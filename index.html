@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // var idx = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    //   var tmp = "";
+    //   var pwd = "03B69b2b83A5217710b6"
+    //   for (var i=0; i < pwd.length; i++)
+    //       tmp += " "+idx.indexOf(pwd.charAt(i));
+    // console.log(tmp)
+    //   if(tmp == " 0 3 37 6 9 11 2 11 8 3 36 5 2 1 7 7 1 0 11 6") {}
+      // {
+      //     $.post('/jobs/challenge/submit', {pwd: pwd}).always(function(x) { window.location = '/jobs/challenge/next'});
+      // }
+    function isPrimeNum(num) {
+      if (!isNum(num)) {
+        return false;
+      }
+      if (!isInteger(num)) {
+        return false;
+      }
+      if (num == 2 || num == 3 || num == 5) {
+        return true;
+      }
+      if (!isDual(num)) {
+        return false;
+      }
+      if (!isThree(num)) {
+        return false;
+      }
+      for (var i = 2; i < num / 5 + 1; i++) {
+        if (num % i == 0) {
+          return false;
+        }
+      };
+      return true;
+    }
+
+    function isInteger(num) {
+      return num == ~~num ? true : false;
+    }
+
+    function isNum(num) {
+      return num == +num ? true : false;
+    }
+
+    function isDual(num) {
+      var num = num.toString();
+      var lastNum = num.substring(num.length - 1, num.length);
+      return lastNum % 2 == 0 || lastNum % 5 == 0 ? false : true;
+    }
+
+    function isThree(num) {
+      var str = num.toString();
+      var sum = 0;
+      for (var i = 0; i < str.length; i++) {
+        sum += +str.substring(i, i + 1);
+      };
+      return sum % 3 == 0 ? false : true;
+    }
+
+    const arr = [ 24847, 12511, 13033, 49952, 35301, 31110, 25939, 63221, 36040, 42998, 25411, 13907, 12678, 24953, 24847, 64982, 5912, 14107, 26474, 21474, 32841, 13121, 18216, 52079, 15316, 12763, 41971, 26183, 6783, 14731, 17190, 13291, 39605, 59524, 8407, 26263, 13913, 54065, 28455, 22773, 50239, 55311, 25759, 48476, 37025, 25033, 14747, 13109, 12129, 9821, 28950, 41582, 51849, 58050, 12583, 60767, 18390, 39951, 14533, 34670, 1994, 46016, 14825, 17719, 23125, 29256, 25919, 18254, 4897, 38930, 44935, 26357, 47186, 13913, 13883, 64980, 37819, 33384, 40043, 13109, 65068, 12816, 13907, 13799, 5728, 3546, 34296, 13249, 31996, 14843, 13151, 35364, 38344, 17348, 12373, 13873, 19821, 39851, 52030, 41260, 32737, 21534, 14158, 33813, 29974, 24917, 52507, 12402, 21275, 38409, 37065, 3564, 57121, 48272, 61194, 13721, 32834, 14447, 12653, 26297, 63728, 55740, 55123, 64419, 25759 ]
+    // console.log(isPrimeNum(30810))
+    // 8
+
+    const filterArr = arr.filter(num => {
+      if (isPrimeNum(num)) {
+        return num 
+      }
+    })
+    let str = ''
+    filterArr.forEach(num => {
+      str += num >> 8
+    })
+    console.log(str, 'filterArr')
+
+    // function moveElement(arr, n) {
+    //   if(Math.abs(n)>arr.length) n = n%arr.length
+    //   return arr.slice(-n).concat(arr.slice(0,-n))
+    // }
+
+    // const d = filterArr >> 8
+    // console.log(d, 'd')
+  </script>
+</body>
+
+</html>
