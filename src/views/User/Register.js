@@ -38,6 +38,11 @@ const Register = props => {
             wrapperCol={18}
             layout="vertical"
             onSubmit={submit}
+            effects={$ => {
+              $('onFieldChange', 'avatar').subscribe(fieldState => {
+                console.log(fieldState.value, 'fieldState')
+              })
+            }}
             >
             <Field
               type="string"
