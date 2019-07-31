@@ -1,13 +1,16 @@
 import React, { useCallback, useState } from "react";
 import { Row, Col } from "antd";
 import SchemaForm, { Field, FormButtonGroup, Submit, Reset, FormSlot } from "@uform/antd";
+import { fetchRegister } from '@/servies/user'
 import styles from "./register.module.less";
 
 const Register = props => {
   const [avatarLoading, setAvatarLoading] = useState(false)
 
   const submit = useCallback((e) => {
-    console.log(e, 'e')
+    fetchRegister(e).then(res => {
+      console.log(res, 'res')
+    })
   }, [])
 
   const beforeUpload = useCallback((e) => {
@@ -16,13 +19,16 @@ const Register = props => {
 
   const handleChange = (info) => {
     console.log(info, 'info')
-    if (info.file.status === 'uploading') {
+    const [file] = info || []
+    if (!file) return;
+    console.log(file, 'file')
+    if (info.status === 'uploading') {
       setAvatarLoading(true)
       return;
     }
-    if (info.file.status === 'done') {
+    if (info.status === 'done') {
       setAvatarLoading(false)
-      console.log(info.file.originFileObj, 'info.file.originFileObj')
+      console.log(info, 'info.file.originFileObj')
     }
   }
 
@@ -40,7 +46,8 @@ const Register = props => {
             onSubmit={submit}
             effects={$ => {
               $('onFieldChange', 'avatar').subscribe(fieldState => {
-                console.log(fieldState.value, 'fieldState')
+                console.log(fieldState, 'fieldState')
+                // handleChange(fieldState.value)
               })
             }}
             >

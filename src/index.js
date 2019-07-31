@@ -7,6 +7,11 @@ import 'moment/locale/zh-cn';
 import Router from "./routes";
 import './index.css'
 
+function importAll (r) {
+  r.keys().forEach(r);
+}
+importAll(require.context('@/mock', true, /\.js$/));
+
 // import { Provider } from "react-redux";
 // import store from './store'
 
